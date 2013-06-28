@@ -1,8 +1,6 @@
-tcc
+TCC
 ===
 
-Tiny C Compiler
-News
 Tiny C Compiler - C Scripting Everywhere - The Smallest ANSI C compiler
 -----------------------------------------------------------------------
 
