@@ -3,53 +3,96 @@ tcc
 
 Tiny C Compiler
 News
+Tiny C Compiler - C Scripting Everywhere - The Smallest ANSI C compiler
+-----------------------------------------------------------------------
 
-[Note: I am no longer working on TCC. Check the mailing list to get up to date information.]
-(Feb 15, 2013) TCC version 0.9.26 is out thanks to Thomas Preud'homme (Changelog). Summary of the changes:
+Features:
+--------
 
-Support for C99 VLA
-Generation of make dependencies (-MD/-MF)
-Support improved for various architectures (x86-64, arm, OSX, WinCE, kFreeBSD, Hurd)
-A bunch of bug fixes
-(May 20, 2009) TCC version 0.9.25 is out thanks to Grischka (Changelog). TCC version 0.9.25 is the first that supports the x86-64 target. Thanks to Shinichiro Hamaji for this.
+- SMALL! You can compile and execute C code everywhere, for example on
+  rescue disks.
 
-(Apr 1, 2008) TCC version 0.9.24 is out thanks to Grischka (Changelog). TCC now supports compilation from standard input and the arm eabi.
+- FAST! tcc generates optimized x86 code. No byte code
+  overhead. Compile, assemble and link about 7 times faster than 'gcc
+  -O0'.
 
-(Jun 17, 2005) TCC version 0.9.23 is out (Changelog). This is the first version with support for the Windows target.
+- UNLIMITED! Any C dynamic library can be used directly. TCC is
+  heading torward full ISOC99 compliance. TCC can of course compile
+  itself.
 
-(Nov 8, 2004) TCC version 0.9.22 is out (Changelog). Linux kernel compilation is 30% faster (10 seconds on a 2.4 GHz Pentium 4).
+- SAFE! tcc includes an optional memory and bound checker. Bound
+  checked code can be mixed freely with standard code.
 
-(Oct 25, 2004) TCC version 0.9.21 is out (Changelog). This version is the first one able to build a bootable Linux kernel with only a few patches to the kernel sources. As a demonstration, you can try the TCCBOOT boot loader. It is able to compile and boot a Linux kernel directly from its source code.
+- Compile and execute C source directly. No linking or assembly
+  necessary. Full C preprocessor included. 
 
-NOTE: if you want to compile the Linux kernel with TCC, you must use a custom build script as in TCCBOOT . I never tried to compile the Linux kernel with TinyCC and the standard Linux Makefiles.
+- C script supported : just add '#!/usr/local/bin/tcc -run' at the first
+  line of your C source, and execute it directly from the command
+  line.
 
-Features
+Documentation:
+-------------
 
-SMALL! You can compile and execute C code everywhere, for example on rescue disks (about 100KB for x86 TCC executable, including C preprocessor, C compiler, assembler and linker).
-FAST! tcc generates x86 code. No byte code overhead. Compile, assemble and link several times faster than GCC.
-UNLIMITED! Any C dynamic library can be used directly. TCC is heading torward full ISOC99 compliance. TCC can of course compile itself.
-SAFE! tcc includes an optional memory and bound checker. Bound checked code can be mixed freely with standard code.
-Compile and execute C source directly. No linking or assembly necessary. Full C preprocessor and GNU-like assembler included.
-C script supported : just add '#!/usr/local/bin/tcc -run' at the first line of your C source, and execute it directly from the command line.
-With libtcc, you can use TCC as a backend for dynamic code generation.
-Download
+1) Installation on a i386 Linux host (for Windows read tcc-win32.txt)
 
-Compilation Speed
+   ./configure
+   make
+   make test
+   make install
 
-Compilation speed for the Links Browser project. There are 76936 lines (including headers). 1950947 lines (67.2 MBytes) are compiled because the same headers are included in many files. TinyCC is about 9 times faster than GCC.
-Compiler	Time(s)	lines/second	MBytes/second
-TinyCC 0.9.22	2.27	859000	29.6
-GCC 3.2 -O0	20.0	98000	3.4
+By default, tcc is installed in /usr/local/bin.
+./configure --help  shows configuration options.
 
-Measures were done on a 2.4 GHz Pentium 4. Real time is measured. Compilation time includes compilation, assembly and linking.
-More up to date tests are available: 1, 2, 3, 4.
 
-Online Documentation
+2) Introduction
 
-You want to help ?
+We assume here that you know ANSI C. Look at the example ex1.c to know
+what the programs look like.
 
-Here are some suggestions:
-Report bugs to the mailing list (and eventually fix them).
+The include file <tcclib.h> can be used if you want a small basic libc
+include support (especially useful for floppy disks). Of course, you
+can also use standard headers, although they are slower to compile.
+
+You can begin your C script with '#!/usr/local/bin/tcc -run' on the first
+line and set its execute bits (chmod a+x your_script). Then, you can
+launch the C code as a shell or perl script :-) The command line
+arguments are put in 'argc' and 'argv' of the main functions, as in
+ANSI C.
+
+3) Examples
+
+ex1.c: simplest example (hello world). Can also be launched directly
+as a script: './ex1.c'.
+
+ex2.c: more complicated example: find a number with the four
+operations given a list of numbers (benchmark).
+
+ex3.c: compute fibonacci numbers (benchmark).
+
+ex4.c: more complicated: X11 program. Very complicated test in fact
+because standard headers are being used !
+
+ex5.c: 'hello world' with standard glibc headers.
+
+tcc.c: TCC can of course compile itself. Used to check the code
+generator.
+
+tcctest.c: auto test for TCC which tests many subtle possible bugs. Used
+when doing 'make test'.
+
+4) Full Documentation
+
+Please read tcc-doc.html to have all the features of TCC.
+
+Additional information is available for the Windows port in tcc-win32.txt.
+
+License:
+-------
+
+TCC is distributed under the GNU Lesser General Public License (see
+COPYING file).
+
+Fabrice Bellard.
 Links
 
 TinyCC mailing list
