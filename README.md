@@ -33,9 +33,9 @@ Documentation:
 
 1) Installation on a i386 Linux host (for Windows read tcc-win32.txt)
 
-   ./configure
-   make
-   make test
+   ./configure &&
+   make && 
+   make test && 
    make install
 
 By default, tcc is installed in /usr/local/bin.
@@ -94,20 +94,35 @@ Fabrice Bellard.
 Links
 
 TinyCC mailing list
+
 Savannah project page and git repository
+
 OTCC - The smallest self compiling pseudo C compiler
+
 FFASN1 - My small but powerful ASN.1 compiler.
+
 TinyCC fork by Rob Landley
+
 LLVM Compiler Infrastructure
+
 SmartEiffel - With TCC you can compile your Eiffel code faster
+
 C-- - An intermediate language for compilers
+
 The GNU C Compiler
+
 The LCC Compiler
+
 The Small Device C Compiler
+
 Cyclone, A Safe Dialect of C
+
 The D language
+
 Programming in C
+
 The Scriptometer evaluates various scripting languages (including TCC).
+
 License
 
 TCC is distributed under the GNU Lesser General Public License.
